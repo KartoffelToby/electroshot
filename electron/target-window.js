@@ -174,7 +174,7 @@ TargetWindow.prototype.setUpPreloadedListener = function(task, onDone) {
               ipc.once('content-dimensions-loaded', function() {
 		setTimeout(function(){
       			onTaskDone();
-		},5000);
+		},1000);
 
               });
               self.window.webContents.send('waitfor', 0, 'content-dimensions-loaded');
@@ -269,9 +269,13 @@ TargetWindow.prototype.capture = function(dims, onDone) {
 
   function tryCapture(dims) {
     if (hasDims) {
-      self.window.capturePage(dims, complete);
+	setTimeout(function(){
+		self.window.capturePage(dims, complete);
+	},5000);
     } else {
-      self.window.capturePage(complete);
+	setTimeout(function(){
+		self.window.capturePage(complete);
+	},5000);
     }
   }
 
