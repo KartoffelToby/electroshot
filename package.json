@@ -1,0 +1,37 @@
+{
+  "name": "electroshot",
+  "version": "1.3.0",
+  "description": "Capture website screenshots with optional device and network emulation as jpg, png or pdf (with web fonts!) using Electron / Chrome.",
+  "main": "test.js",
+  "bin": {
+    "electroshot": "./bin/electroshot.js"
+  },
+  "scripts": {
+    "test": "mocha -R spec --bail ./test/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mixu/electroshot.git"
+  },
+  "author": "Mikito Takada <mikito.takada@gmail.com> (http://mixu.net/)",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "chromium-emulated-devices": "latest",
+    "chromium-emulated-networks": "latest",
+    "cookie": "latest",
+    "electron": "latest",
+    "es6-template": "latest",
+    "express": "latest",
+    "file-fixture": "latest",
+    "log-symbols": "latest",
+    "minilog": "latest",
+    "miniq": "latest",
+    "sanitize-filename": "latest",
+    "subarg": "latest",
+    "tough-cookie": "latest",
+    "xtend": "latest"
+  },
+  "devDependencies": {
+    "mocha": "latest"
+  }
+}

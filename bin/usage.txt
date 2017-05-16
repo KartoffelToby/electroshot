@@ -1,0 +1,125 @@
+USAGE
+
+    electroshot [options] [url(s)] [resolution(s)|device(s)]
+
+URL EXAMPLES
+
+    http://...         Captures a specific http url.
+    https://...        Captures a specific https url.
+
+    ./some/file.html   Captures a local files by mounting `./some` under localhost using a HTTP server,
+    /some/file.html    and then requesting `/file.html`.
+
+    file://...         Captures a local file by loading the file URL directly, without a static file server.
+
+RESOLUTION / DEVICE EXAMPLES
+
+    1024x768           Captures a screenshot which is cropped to 1024px width and 768px height.
+
+    1024x              Captures a screenshot which is 1024px wide, and as tall needed for the page.
+
+    1024               Same as above.
+
+    "iPhone 6"   Captures a screenshot which is as wide as a vertical iPhone 6 and as tall as needed,
+                       with device pixel resolution and pixel ratio emulation
+                       (e.g. CSS / JS screen dimension queries work).
+
+    "horizontal iPhone 6"   Captures a screenshot which is as wide as a horizontal iPhone 6,
+                                  and as tall as needed, with device pixel resolution emulation
+
+    "cropped iPhone 6"  Captures a screenshot which is as wide and tall as a single screen on
+                              a vertical iPhone 6.
+
+    "cropped horizontal iPhone 6"  Both cropped and horizontal.
+
+    "iPhone 6"x1000   Captures a screenshot which is as wide as a vertical iPhone 6, and 1000px tall.
+
+OPTIONS - CAPTURE
+
+    --out <dir>        Write the screenshots to a specific directory (default: process.cwd)
+
+    --filename <path>  A full path or a file name relative to `--out`; you can also use the following template
+                       tokens to generate file names: {crop}, {date}, {time}, {delay}, {name},
+                       {size}, {width}, {height}, {format} (see the readme for details).
+
+    --delay <ms>       Waits a number of milliseconds before taking a screenshot. Defaults to 0,
+                       which simply waits until two `requestAnimationFrame` calls have passed.
+
+                       You can set multiple `--delay`s to capture the page(s) at multiple points in time.
+
+    --selector <expr>  Captures a specific DOM element using a CSS selector using document.querySelector.
+                       The screenshot is cropped and sized to match the element as it appears on the page.
+
+    --format <png|jpg|pdf>   Sets the image format (default: png).
+
+    --quality <0..100> Sets the jpg quality parameter (default: 75).
+
+    --pdf-margin       Sets the PDF margin. Valid values are `default`, `none`, `minimum`.
+
+    --pdf-page-size    Sets the PDF page size. Valid values are `A4`, `A3`, `legal`, `letter`, `tabloid`
+
+    --pdf-background   Whether to print CSS backgrounds. (false by default)
+
+    --pdf-orientation  Sets the PDF orientation. Valid values are `landscape` and `portrait`.
+
+    --zoom-factor <n>  The default zoom factor of the page; e.g. 1.0 represents 100% and 3.0 represents 300%.
+
+    --device <json>    A JSON blob that defines a custom device.
+
+OPTIONS - HTTP
+
+    --user-agent <string>  Sets a custom user agent string.
+
+    --cookie <cookie>  Sets a custom cookie. Can be set multiple times.
+
+    --host <hostname>  Hostname for serving local files, defaults to `localhost`.
+
+    --port <port>      Port for serving local files, defaults to `3000`.
+
+    --root <dir>       For local files, mount a specific directory as the web root; the web root
+                       defaults to the directory the local files are in.
+
+OPTIONS - NETWORK EMULATION
+
+    --list-network-conditions  Show the list of known network condition presets.
+
+    --emulate-network  <profile> Emulate a specific latency, download and upload setting
+                                 from the list of network condition presets.
+
+    --latency <ms>     RTT in ms.
+
+    --download <Bps>   Download rate in Bps
+
+    --upload <Bps>     Upload rate in Bps
+
+OPTIONS - DEVICE EMULATION
+
+    --list-devices     Show the list of known devices to emulate.
+
+OPTIONS - CONTENT INJECTION
+
+    --css <str>        Inserts a string of CSS onto the page. Can be set multiple times.
+
+    --js <str>         Inserts a string of JS onto the page. Can be set multiple times.
+
+OPTIONS - MISC
+
+    --help, -h         Show this help.
+
+    --debug            Verbose debugging mode.
+
+    --version, -v      Version info.
+
+CHROME FLAGS
+
+`electroshot` passes any unknown flags on to Chrome via Electron. Here are three useful flags:
+
+    --ignore-certificate-errors       Ignores certificate related errors.
+
+    --force-device-scale-factor <n>   Forces Chrome to use a specific hidpi scale factor.
+
+    --proxy-server <address:port>     Use a specified proxy server. Only affects HTTP and HTTPS requests.
+
+
+For more, see: https://github.com/atom/electron/blob/master/docs/api/chrome-command-line-switches.md and
+http://peter.sh/experiments/chromium-command-line-switches/.
