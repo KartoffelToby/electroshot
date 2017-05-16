@@ -34,6 +34,13 @@ TargetWindow.prototype.initialize = function(task, onDone) {
 	pageVisibility: true,
 	overlayScrollbars: true,
 	offscreen: true,
+	javascript: true,
+	webSecurity: false,
+	allowDisplayingInsecureContent: true,
+	allowRunningInsecureContent: true,
+	experimentalFeatures: true,
+	experimentalCanvasFeatures: true,
+	sharedWorker: true,
     },
   };
 
@@ -194,7 +201,7 @@ TargetWindow.prototype.setUpPreloadedListener = function(task, onDone) {
             self.window.webContents.executeJavaScript(js, false, function() {
                 setTimeout(function() {
       			onTaskDone();
-    		}, 5000);
+    		}, 1000);
             });
           });
         });
